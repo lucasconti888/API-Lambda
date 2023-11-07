@@ -10,7 +10,9 @@ username = "username"
 password = "senha"
 
 def lambda_handler(event, context):
+
     if 'headers' in event and 'Authorization' in event['headers']:
+
         encoded_credentials = event['headers']['Authorization'].split(' ')[-1]
         decoded_credentials = base64.b64decode(encoded_credentials).decode('utf-8')
         user, pwd = decoded_credentials.split(':')
